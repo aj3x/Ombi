@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text;
 
@@ -27,15 +27,17 @@ namespace Ombi.Notifications.Templates
         
         private const string SubjectKey = "{@SUBJECT}";
         private const string BodyKey = "{@BODY}";
+        private const string ApplicationUrl = "{@APPURL}";
         private const string Poster = "{@POSTER}";
         private const string DateKey = "{@DATENOW}";
         private const string Logo = "{@LOGO}";
 
-        public string LoadTemplate(string subject, string body, string imgsrc = default(string), string logo = default(string), string url = default(string))
+        public string LoadTemplate(string subject, string body, string applicationUrl, string imgsrc = default(string), string logo = default(string), string url = default(string))
         {
             var sb = new StringBuilder(File.ReadAllText(TemplateLocation));
             sb.Replace(SubjectKey, subject);
             sb.Replace(BodyKey, body);
+            sb.Replace(ApplicationUrl, applicationUrl);
             sb.Replace(DateKey, DateTime.Now.ToString("f"));
             sb.Replace(Poster, GetPosterContent(imgsrc, url));
             sb.Replace(Logo, string.IsNullOrEmpty(logo) ? OmbiLogo : logo);

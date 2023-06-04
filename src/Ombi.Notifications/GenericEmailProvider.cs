@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using EnsureThat;
 using MailKit.Net.Smtp;
@@ -37,7 +37,7 @@ namespace Ombi.Notifications
                 var email = new EmailBasicTemplate();
 
                 var customization = await CustomizationSettings.GetSettingsAsync();
-                var html = email.LoadTemplate(model.Subject, model.Message, null, customization.Logo);
+                var html = email.LoadTemplate(model.Subject, model.Message, customization.ApplicationUrl, null, customization.Logo);
                 
                 var messageId = MimeUtils.GenerateMessageId();
                 if (customization.ApplicationUrl.HasValue())

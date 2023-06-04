@@ -64,7 +64,7 @@ namespace Ombi.Notifications.Agents
                 return null;
             }
             var email = new EmailBasicTemplate();
-            var html = email.LoadTemplate(parsed.Subject, parsed.Message, parsed.Image, Customization.Logo, parsed.DetailsUrl);
+            var html = email.LoadTemplate(parsed.Subject, parsed.Message, Customization.ApplicationUrl, parsed.Image, Customization.Logo, parsed.DetailsUrl);
 
 
             var message = new NotificationMessage
@@ -298,7 +298,9 @@ namespace Ombi.Notifications.Agents
             var email = new EmailBasicTemplate();
             var html = email.LoadTemplate(
                 "Test Message",
-                "This is just a test! Success!", "", Customization.Logo);
+                "This is just a test! Success!",
+                Customization.ApplicationUrl,
+                "", Customization.Logo);
             var message = new NotificationMessage
             {
                 Message = html,
